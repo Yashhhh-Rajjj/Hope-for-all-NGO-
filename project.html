@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HopeForAll NGO</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #f2f7ff;
+            color: #333;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #ffffff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            color: #2b7a78;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin-left: 20px;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2b7a78;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+                url("https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=1600&q=80")
+                center/cover no-repeat;
+            color: white;
+            padding: 80px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1 1 520px;
+            text-align: left;
+        }
+
+        .hero-text h2 {
+            font-size: clamp(28px, 4.4vw, 48px);
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.04;
+        }
+
+        .hero-text p {
+            font-size: clamp(15px, 2.2vw, 20px);
+            margin-bottom: 22px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #2b7a78;
+            color: #fff;
+        }
+
+        .btn-primary:hover { background-color: #1f5d5b; }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.14);
+        }
+
+        .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+        .hero-stats {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 0 0 320px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            min-width: 100px;
+            background: rgba(255,255,255,0.06);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .stat span { font-size: 13px; color: rgba(255,255,255,0.85); }
+
+        @keyframes fadeUp {
+            from { transform: translateY(8px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero-inner > * { animation: fadeUp 600ms ease both; }
+
+        /* Section Style */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section h2 {
+            font-size: 34px;
+            color: #2b7a78;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Causes Section */
+        .causes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .cause {
+            width: 300px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .cause:hover {
+            transform: translateY(-6px);
+        }
+
+        .cause img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .cause-content {
+            padding: 16px;
+        }
+
+        .cause-content h3 {
+            color: #2b7a78;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .cause-content p {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* Donation Section */
+        .donate {
+            background-color: #dff4f3;
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .donate h2 {
+            font-size: 34px;
+            color: #2b7a78;
+            margin-bottom: 10px;
+        }
+
+        .donate p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .donate button {
+            padding: 12px 26px;
+            font-size: 17px;
+            background-color: #2b7a78;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .donate button:hover {
+            background-color: #1f5d5b;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            border-color: #2b7a78;
+            outline: none;
+        }
+
+        .contact button {
+            padding: 12px;
+            background: #2b7a78;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .contact button:hover {
+            background: #1f5d5b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #17252a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .causes {
+                flex-direction: column;
+                align-items: center;
+            }
+            .cause {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <h1>HopeForAll</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#causes">Causes</a>
+            <a href="#donate">Donate</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home" aria-label="HopeForAll hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h2>Be the Reason Someone Smiles Today</h2>
+                <p>Join hands with us to create impactful change. Support education, clean water, and empowerment programs that transform communities.</p>
+
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="#donate">Donate Now</a>
+                    <a class="btn btn-secondary" href="#about">Learn More</a>
+                </div>
+            </div>
+
+            <div class="hero-stats" role="region" aria-label="Impact statistics">
+                <div class="stat">
+                    <strong>12K+</strong>
+                    <span>Lives Impacted</span>
+                </div>
+                <div class="stat">
+                    <strong>85</strong>
+                    <span>Active Projects</span>
+                </div>
+                <div class="stat">
+                    <strong>3K+</strong>
+                    <span>Volunteers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section" id="about">
+        <h2>Who We Are</h2>
+        <p>HopeForAll is a nonprofit dedicated to uplift communities through education, healthcare, clean water access, and empowerment initiatives. Together, we envision a world where every individual gets equal opportunities to thrive.</p>
+    </section>
+
+    <!-- CAUSES SECTION -->
+    <section class="section" id="causes">
+        <h2>Our Key Causes</h2>
+
+        <div class="causes">
+
+            <div class="cause">
+                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" alt="Education Cause">
+                <div class="cause-content">
+                    <h3>Child Education</h3>
+                    <p>Providing educational resources, scholarships, and school supplies to underprivileged children.</p>
+                </div>
+            </div>
+
+            <div class="cause">
+                <img src="https://images.unsplash.com/photo-1505159940484-eb2b9f2588e2?auto=format&fit=crop&w=800&q=80" alt="Clean Water">
+                <div class="cause-content">
+                    <h3>Clean Water</h3>
+                    <p>Ensuring clean drinking water availability in rural and drought-affected regions.</p>
+                </div>
+            </div>
+
+            <div class="cause">
+                <img src="https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?auto=format&fit=crop&w=800&q=80" alt="Women Empowerment">
+                <div class="cause-content">
+                    <h3>Women Empowerment</h3>
+                    <p>Supporting women through skill-building workshops, employment assistance, and awareness programs.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DONATION SECTION -->
+    <section class="donate" id="donate">
+        <h2>Your Contribution Can Change Lives</h2>
+        <p>Even a small donation from you can make a huge difference for someone in need.</p>
+        <button>Contribute Now</button>
+    </section>
+
+    <!-- CONTACT / VOLUNTEER SECTION -->
+    <section class="contact" id="contact">
+        <h2 style="text-align:center;color:#2b7a78;margin-bottom:20px;">Become a Volunteer</h2>
+
+        <form>
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea rows="5" placeholder="Your Message (Tell us how you want to help!)"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2025 HopeForAll NGO | All Rights Reserved
+    </footer>
+
+</body>
+</html>
